@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F5EDE4;
+  --color-paper: #FFFDFC;
+  --color-charcoal: #3F3025;
+  --color-sepia: #756556;
+  --color-bronze: #9A8068;
+  --color-umber: #30251E;
+  --color-biscuit: #D9C7B5;
+  --color-clay: #EEE2D6;
+  --color-taupe: #948477;
+  --color-clay-border: rgba(63, 48, 37, 0.15);
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+.dark {
+  --color-cream: #140F0B; /* Deep elegant dark background */
+  --color-paper: #1D1612; /* Dark card background */
+  --color-charcoal: #F5EDE4; /* Off-white text */
+  --color-sepia: #D9C7B5; /* Soft lighter sepia text */
+  --color-bronze: #C4AC96; /* Elegant lighter bronze/beige accent */
+  --color-umber: #FFFDFC; /* Bright white highlight */
+  --color-biscuit: #3F3025; /* Darker brown element fill */
+  --color-clay: #2C1F16; /* Medium dark base fill */
+  --color-taupe: #B2A295; /* Lighter sand text */
+  --color-clay-border: rgba(245, 237, 228, 0.12); /* Clean light border */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Custom high-contrast outline for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-bronze);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-umber);
+    color: var(--color-cream);
+  }
+}
+
+/* Custom marquee animations and helper classes */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth custom scrollbar matching the editorial aesthetic */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-biscuit);
+  border-radius: 5px;
+  border: 2px solid var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bronze);
+}
+
+/* Asymmetric design accent lines */
+.editorial-line {
+  height: 1px;
+  background-color: var(--color-clay-border);
+  width: 100%;
+}
+
+/* Print-specific styles to output a pixel-perfect, clean PDF */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: "Times New Roman", Times, Georgia, serif !important;
+    width: 210mm;
+    height: 297mm;
+  }
+
+  #portfolio-app-root {
+    display: none !important;
+  }
+
+  #print-resume-container {
+    display: block !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-shadow: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: #000000 !important;
+  }
+
+  /* Keep lists and bullet points perfectly clean */
+  ul {
+    list-style-type: disc !important;
+    margin-left: 1.5rem !important;
+  }
+
+  li {
+    margin-bottom: 0.125rem !important;
+  }
+}
+
